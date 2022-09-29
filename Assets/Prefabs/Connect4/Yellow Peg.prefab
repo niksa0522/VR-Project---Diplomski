@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 627181797251440398}
   - component: {fileID: 627181797251440397}
   - component: {fileID: 627181797251440403}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Peg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,9 +107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 627181797407972691}
   - component: {fileID: -1440939317415460936}
-  - component: {fileID: 4391628684415019905}
   - component: {fileID: -5020181535575823722}
-  m_Layer: 0
+  - component: {fileID: 4717263947834570847}
+  m_Layer: 6
   m_Name: Yellow Peg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4391628684415019905
+--- !u!65 &-5020181535575823722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627181797407972690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0075, y: 0.0725, z: 0.06}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4717263947834570847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 627181797407972690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1204d37f20f7ce94a8884f285280f385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -166,7 +179,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 3
+    m_Bits: 2
+  m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
@@ -227,6 +241,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
+  m_UseDynamicAttach: 0
+  m_MatchAttachPosition: 1
+  m_MatchAttachRotation: 1
+  m_SnapToColliderVolume: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 2
   m_VelocityDamping: 1
@@ -263,19 +281,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!65 &-5020181535575823722
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627181797407972690}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.0075, y: 0.0725, z: 0.06}
-  m_Center: {x: 0, y: 0, z: 0}
+  pileNum: 2
 --- !u!1 &627181797423292223
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 627181797423292216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ScaleHelper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

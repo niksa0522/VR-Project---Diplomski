@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - M1911 Magazine
+  - M4 Magazine
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - Right Hand Physics
   - Non Physics Hand
   - Body
-  - 
-  - 
-  - 
+  - Temp Layer 2
+  - Grab No Physics
+  - Face
   - 
   - 
   - 

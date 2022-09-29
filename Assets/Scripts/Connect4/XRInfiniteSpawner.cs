@@ -10,36 +10,37 @@ public class XRInfiniteSpawner : MonoBehaviour
     private XRBaseInteractable interactablePrefab;
 
     private XRBaseInteractor interactor;
-
-    [SerializeField] private int playerNum = 1;
+    
 
     // Start is called before the first frame update
     private void Awake()
     {
         interactor = GetComponent<XRBaseInteractor>();
-        
         //Maybe override starting selected interactable
+        OverrideStartingSelectedInteractable();
     }
 
     private void OnEnable()
     {
+        Debug.Log("ovde je doslo");
         interactor.selectExited.AddListener(OnSelectExited);
     }
 
     private void OnDisable()
     {
+        Debug.Log("ovde je doslo 2");
         interactor.selectExited.RemoveListener(OnSelectExited);
     }
+    
+    
 
     void OnSelectExited(SelectExitEventArgs selectExitEventArgs)
     {
         if (selectExitEventArgs.isCanceled)
             return;
-        Debug.Log(selectExitEventArgs.interactorObject.transform.parent.name);
-        //checks if parent of controller (CameraOffset) and parent of parent (XRRig) exists and if they have the player script
-        if(selectExitEventArgs.interactorObject.transform.parent != null && selectExitEventArgs.interactorObject.transform.parent.parent != null)
-            if(selectExitEventArgs.interactorObject.transform.parent.parent.GetComponent<Player>() != null && selectExitEventArgs.interactorObject.transform.parent.parent.GetComponent<Player>().playerNum == playerNum)
-                InstantiateAndSelectPrefab();
+        Debug.Log("test");
+        Debug.Log(selectExitEventArgs.interactableObject.transform.name);
+        InstantiateAndSelectPrefab();
     }
 
     void InstantiateAndSelectPrefab()
@@ -53,5 +54,10 @@ public class XRInfiniteSpawner : MonoBehaviour
     {
         var socketTransform = interactor.transform;
         return Instantiate(interactablePrefab, socketTransform.position, socketTransform.rotation);
+    }
+    
+    void OverrideStartingSelectedInteractable()
+    {
+        interactor.startingSelectedInteractable = InstantiatePrefab();
     }
 }

@@ -13,7 +13,7 @@ namespace Connect4.Classes
         public static int[] columnOrder = new int[] { 3, 2, 4, 1, 5, 0, 6 };
 
         //koristim ovo za proveru kraja igre i heuristiku jer mi je lakse da radim sa nizovima
-        private int[,] board = new int[WIDTH, HEIGHT];
+        public int[,] board = new int[WIDTH, HEIGHT];
         private int[] columns = new int[WIDTH];
         public int won = 0;
         /** Koristi se bitboard za lakse indeksiranje u transpozicionu tabelu

@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Connect4GameController : MonoBehaviour
 {
-    private int currentPlayer = 2;
+    private int currentPlayer = 1;
     public GameObject redPeg;
     public GameObject yellowPeg;
     public bool AIActive = true;
@@ -34,6 +34,10 @@ public class Connect4GameController : MonoBehaviour
             DoMove(p.y);*/
             StartCoroutine(logic.ReturnMoveCoroutine(context, 7, returnValue => DoMove(returnValue.y)));
         }
+        foreach (var peg in pegList)
+        {
+            Destroy(peg);
+        }
     }
 
     private void DoMove(int y)
@@ -54,10 +58,7 @@ public class Connect4GameController : MonoBehaviour
                 //TODO: Show in canvas that game has ended
             }
 
-            foreach (var peg in pegList)
-            {
-                Destroy(peg);
-            }
+            
 
             NewGame();
             return;
@@ -74,12 +75,14 @@ public class Connect4GameController : MonoBehaviour
         {
             GameObject peg = Instantiate(redPeg, top.position,
                 top.rotation);
+            peg.transform.SetParent(this.transform);
             pegList.Add(peg);
         }
         else
         {
             GameObject peg = Instantiate(yellowPeg, top.position,
                 top.rotation);
+            peg.transform.SetParent(this.transform);
             pegList.Add(peg);
         }
     }
@@ -87,10 +90,8 @@ public class Connect4GameController : MonoBehaviour
     //Checks if peg type placed is appropriate and if it is then places new peg and deletes peg in socket
     public void PegPlaced(SelectEnterEventArgs selectEnterEventArgs)
     {
-        //Debug this, not sure if interactable object is socket or grab object
-        Debug.Log(selectEnterEventArgs.interactableObject.transform.name);
         int pegType = selectEnterEventArgs.interactableObject.transform.name.Contains("Red") ? 1 : 2;
-        string columnText = selectEnterEventArgs.interactableObject.transform.name;
+        string columnText = selectEnterEventArgs.interactorObject.transform.name;
         int column = 1;
         if (columnText.Contains("Column"))
         {
@@ -98,16 +99,17 @@ public class Connect4GameController : MonoBehaviour
             char lastNum = columnText[columnText.Length - 1];
             int.TryParse(lastNum.ToString(), out column);
         }
-        DestroyImmediate(selectEnterEventArgs.interactableObject.transform);
+        DestroyImmediate(selectEnterEventArgs.interactableObject.transform.gameObject);
         if (pegType == context.CurrentPlayer)//mozda i ovde proveriti da li player koji stavlja je ustvari player koji igra
         {
             if (context.CurrentState.canPlay(column - 1))
             {
+                
                 DoMove(column-1);
                 if (context.CurrentPlayer != currentPlayer)
                 {
                     //TODO: Canvas ili nesto drugo promeniti da izgleda kao da razmislja
-                    /*Move p = logic.ReturnMove(context, 5);
+                    /*Move p = logic.ReturnMove(context, 8);
                     DoMove(p.y);*/
                     StartCoroutine(logic.ReturnMoveCoroutine(context, 7, returnValue => DoMove(returnValue.y)));
                 }
