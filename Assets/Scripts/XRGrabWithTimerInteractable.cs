@@ -22,11 +22,26 @@ public class XRGrabWithTimerInteractable : XRGrabInteractable
 
     public override bool IsSelectableBy(IXRSelectInteractor interactor)
     {
+        //da ne mozes da izvadis magazine ako nisi pokupio pistolj
         if (interactor.transform.name.Contains("Controller"))
         {
             if (_magazine.Gun != null)
             {
                 return _magazine.Gun.isGrabbedByPlayer;
+            }
+        }
+        else if (interactor.transform.name.Contains("Sphere"))
+        {
+            //Ako je interactor socket i posedujes gun to znaci da si ubacen u pistolj
+            if (_magazine.Gun != null)
+            {
+                return base.IsSelectableBy(interactor);
+            }
+            //Magazin nije ubacen u pistolj
+            else
+            {
+                GunPointer gunPointer = interactor.transform.GetComponent<GunPointer>();
+                return gunPointer.gun.isGrabbedByPlayer && base.IsSelectableBy(interactor);
             }
         }
         return base.IsSelectableBy(interactor);

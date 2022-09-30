@@ -27,13 +27,13 @@ public class XROffsetGrabInteractable : XRGrabInteractable
     {
         if (args.interactorObject is XRDirectInteractor)
         {
-            attachTransform.position = args.interactorObject.GetAttachTransform(args.interactableObject).position;
-            attachTransform.rotation = args.interactorObject.GetAttachTransform(args.interactableObject).rotation;
+            attachTransform.position = args.interactorObject.transform.position;
+            attachTransform.rotation = args.interactorObject.transform.rotation;
         }
         else
         {
-            attachTransform.localPosition = transform.position;
-            attachTransform.localRotation = transform.rotation;
+            attachTransform.localPosition = initialAttachLocalPos;
+            attachTransform.localRotation = initialAttachLocalRot;
         }
         
         

@@ -25,6 +25,8 @@ public class SimpleShoot : MonoBehaviour
     [SerializeField] AudioClip sound,magazineIn,noAmmo;
     [SerializeField] private Magazine magazine;
     [SerializeField] private XRSocketInteractor socket;
+    [SerializeField] private GameObject leftHand;
+    [SerializeField] private GameObject rightHand;
     private bool hasReloaded = true;
     public bool isGrabbedByPlayer = false;
 
@@ -54,13 +56,29 @@ public class SimpleShoot : MonoBehaviour
     public void GunGrabbed(SelectEnterEventArgs args)
     {
         if (args.interactorObject.transform.name.Contains("Controller"))
-            isGrabbedByPlayer = true;
+        {
+        isGrabbedByPlayer = true;
+        if (args.interactorObject.transform.name.Contains("Left"))
+        {
+            leftHand.SetActive(true);
+        }
+        else
+        {
+            rightHand.SetActive(true);
+        }
+        }
+            
     }
 
     public void GunDropped(SelectExitEventArgs args)
     {
         if (args.interactorObject.transform.name.Contains("Controller"))
+        {
             isGrabbedByPlayer = false;
+            leftHand.SetActive(false);
+            rightHand.SetActive(false);
+        }
+            
     }
 
     public void AddMagazine(SelectEnterEventArgs args)

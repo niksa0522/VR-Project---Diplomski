@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7935729031650492471}
   m_Layer: 12
   m_Name: M1911 Magazine_Black_Full
-  m_TagString: M1911 Magazine
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

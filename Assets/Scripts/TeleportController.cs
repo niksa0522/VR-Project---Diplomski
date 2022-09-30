@@ -11,6 +11,8 @@ public class TeleportController : MonoBehaviour
     // Start is called before the first frame update
     public GameObject TeleportRay;
     public XRDirectInteractor DirectInteractor;
+    public XRRayInteractor distanceInteractor;
+    public GameObject distanceRay;
     public InputAction action;
 
     public bool EnableTeleport { get; set; } = true;
@@ -45,6 +47,9 @@ public class TeleportController : MonoBehaviour
         {
             TeleportRay.SetActive(true);
             DirectInteractor.enabled = false;
+            distanceInteractor.enabled = false;
+            distanceRay.SetActive(false);
+            
         }
         
     }
@@ -53,5 +58,7 @@ public class TeleportController : MonoBehaviour
     {
         TeleportRay.SetActive(false);
         DirectInteractor.enabled = true;
+        distanceRay.SetActive(true);
+        distanceInteractor.enabled = true;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Connect4.Classes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -10,9 +11,13 @@ public class Connect4GameController : MonoBehaviour
     private int currentPlayer = 1;
     public GameObject redPeg;
     public GameObject yellowPeg;
-    public bool AIActive = true;
+
+    [SerializeField] private GameObject canvasRotate;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private int RotationSpeed = 1;
 
     private GameLogic logic;
+    private bool isThinking = false;
     private ContextConnect4 context;
     public List<Transform> columnTops;
 
@@ -23,25 +28,50 @@ public class Connect4GameController : MonoBehaviour
         NewGame();
     }
 
+    private void Update()
+    {
+        if (isThinking)
+        {
+            canvasRotate.transform.Rotate(Vector3.up, RotationSpeed * Time.deltaTime);
+        }
+    }
+
+    public void RestartGame()
+    {
+        if (pegList.Count > 1)
+        {
+            NewGame();
+        }
+        
+    }
+
     private void NewGame()
     {
         logic = new GameLogic();
         context = new ContextConnect4(new Board(), 1);
-        if (currentPlayer != 1)
-        {
-            //TODO: Canvas ili nesto drugo promeniti da izgleda kao da razmislja
-            /*Move p = logic.ReturnMove(context, 5);
-            DoMove(p.y);*/
-            StartCoroutine(logic.ReturnMoveCoroutine(context, 7, returnValue => DoMove(returnValue.y)));
-        }
         foreach (var peg in pegList)
         {
             Destroy(peg);
+        }
+        if (currentPlayer != 1)
+        {
+            
+            //TODO: Canvas ili nesto drugo promeniti da izgleda kao da razmislja
+            isThinking = true;
+            canvasRotate.SetActive(true);
+            text.gameObject.SetActive(true);
+            text.text = "AI razmišlja";
+            /*Move p = logic.ReturnMove(context, 5);
+            DoMove(p.y);*/
+            StartCoroutine(logic.ReturnMoveCoroutine(context, 7, returnValue => DoMove(returnValue.y)));
         }
     }
 
     private void DoMove(int y)
     {
+        canvasRotate.SetActive(false);
+        text.gameObject.SetActive(false);
+        isThinking = false;
         int player = 1 + (Convert.ToInt32(context.CurrentState.nbMoves()) % 2);
         if (context.CurrentState.isWinningMove(y))
         {
@@ -51,11 +81,13 @@ public class Connect4GameController : MonoBehaviour
             context.Next();
             if (player == 1)
             {
-                //TODO: Show in canvas that game has ended
+                text.gameObject.SetActive(true);
+                text.text = "Igra gotova!";
             }
             else
             {
-                //TODO: Show in canvas that game has ended
+                text.gameObject.SetActive(true);
+                text.text = "Igra gotova!";
             }
 
             
@@ -109,6 +141,10 @@ public class Connect4GameController : MonoBehaviour
                 if (context.CurrentPlayer != currentPlayer)
                 {
                     //TODO: Canvas ili nesto drugo promeniti da izgleda kao da razmislja
+                    isThinking = true;
+                    canvasRotate.SetActive(true);
+                    text.gameObject.SetActive(true);
+                    text.text = "AI razmišlja";
                     /*Move p = logic.ReturnMove(context, 8);
                     DoMove(p.y);*/
                     StartCoroutine(logic.ReturnMoveCoroutine(context, 7, returnValue => DoMove(returnValue.y)));

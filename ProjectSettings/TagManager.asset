@@ -6,6 +6,7 @@ TagManager:
   tags:
   - M1911 Magazine
   - M4 Magazine
+  - PaintCanvas
   layers:
   - Default
   - TransparentFX
