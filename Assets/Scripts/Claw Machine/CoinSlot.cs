@@ -18,21 +18,11 @@ public class CoinSlot : XRBaseInteractable
 
     [SerializeField] private ClawMachine clawMachine;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         selectEntered.AddListener(AddCoinSelect);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void AddCoinSelect(SelectEnterEventArgs args)
@@ -46,10 +36,6 @@ public class CoinSlot : XRBaseInteractable
         
         if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic)
         {
-            if (isHovered)
-            {
-                Debug.Log("hovered");
-            }
             if (isHovered && input.WasPressedThisFrame())
             {
                 AddCoin();

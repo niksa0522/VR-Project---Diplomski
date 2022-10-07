@@ -340,7 +340,6 @@ GameObject:
   - component: {fileID: 5031532181329098664}
   - component: {fileID: 3856507351693991225}
   - component: {fileID: 2205191556374289070}
-  - component: {fileID: 1038243582629928297}
   m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
@@ -544,26 +543,6 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!114 &1038243582629928297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274286225162591125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184c827b5be7bc64b92f25508ae1014e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hingeJoint: {fileID: 3856507351693991225}
-  firstDrawerController: {fileID: 8335571148292628764}
-  secondDrawerController: {fileID: 5411441886370719018}
-  grabInteractable: {fileID: 2205191556374289070}
-  firstDrawerOpenAngle: -120
-  secondDrawerOpenAngle: -10
-  maxLimits: 0
-  minLimits: -180
 --- !u!1 &589877860002112332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1586,6 @@ GameObject:
   - component: {fileID: 4465658428723230468}
   - component: {fileID: 4738643660065071892}
   - component: {fileID: 2395469879743968681}
-  - component: {fileID: 8335571148292628764}
   m_Layer: 12
   m_Name: Drawer
   m_TagString: Untagged
@@ -1967,20 +1945,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8335571148292628764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215328774573243035}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b78ec67c484a03498aaae722f9acc0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grabInteractable: {fileID: 4738643660065071892}
-  fridgeDoorController: {fileID: 1038243582629928297}
 --- !u!1 &4416015684578503005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabInteractable: {fileID: 6368147358110195365}
-  fridgeDoorController: {fileID: 1038243582629928297}
+  fridgeDoorController: {fileID: 0}
 --- !u!1 &9013606280585229966
 GameObject:
   m_ObjectHideFlags: 0
